@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { PageTitle } from '../../components/PageTitle/PageTitle';
 import { categories } from '../../constants/categories';
 import { products } from '../../constants/products';
 import { ShopLayout } from '../../layout/Shop/Shop';
@@ -20,32 +21,32 @@ const CategoryPage = () => {
   );
 
   return (
-    <ShopLayout>
-      <div>
-        <div
-          className={s.description}
-          style={{ backgroundImage: `url(${category?.image})` }}
-        >
-          <div className={s.title}>{category?.descriptionTitle}</div>
-          <div className={s.text}>{category?.descriptionText}</div>
-          <div className={s.filter}></div>
-        </div>
+    <>
+      <PageTitle
+        title={category?.descriptionTitle || ''}
+        image={category?.image || ''}
+        description={category?.descriptionText}
+        button={{ title: 'Перейти', onClick: () => console.log('test') }}
+      />
+      <ShopLayout>
         <div>
-          {filteredProducts.map(product => (
-            <div>
-              <div style={{ width: '100%' }}>
-                <img src={product.images?.[0] || ''} />
-                <div>
-                  <div>{product.title}</div>
-                  <div>{product.smallDescription}</div>
-                  <Link href={`products/${product.id}`}>Перейти</Link>
+          <div>
+            {filteredProducts.map(product => (
+              <div>
+                <div style={{ width: '100%' }}>
+                  <img src={product.images?.[0] || ''} />
+                  <div>
+                    <div>{product.title}</div>
+                    <div>{product.smallDescription}</div>
+                    <Link href={`products/${product.id}`}>Перейти</Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </ShopLayout>
+      </ShopLayout>
+    </>
   );
 };
 
