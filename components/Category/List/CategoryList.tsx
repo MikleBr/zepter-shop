@@ -18,6 +18,7 @@ export const CategoryList = ({ title, categories }: Props) => {
         <div className={s.cardsList}>
           {categories.map(category => (
             <CategoryCard
+              key={category.id}
               title={category.title}
               path={`categories/${category.id}`}
               image={category.image || ''}

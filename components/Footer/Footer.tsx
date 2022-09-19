@@ -11,7 +11,7 @@ const topLinks = [
     description: 'ежедневно с 10:00 до 20:00',
   },
   {
-    title: '8 (921) 888-88-88',
+    title: '8 (921) 888-44-88',
     description: 'Whats`App, Telegram',
   },
   {
@@ -27,15 +27,15 @@ const topLinks = [
 const bottomLinks = [
   {
     title: 'О нас',
-    path: '',
+    path: '/test1',
   },
   {
     title: 'Оплата и доставка',
-    path: '',
+    path: '/test2',
   },
   {
     title: 'Для покупателей',
-    path: '',
+    path: '/test3',
   },
 ];
 
@@ -45,7 +45,7 @@ export const Footer = ({}: Props) => {
       <div className={s.top}>
         <div className={s.container}>
           {topLinks.map(link => (
-            <div className={s.link}>
+            <div key={link.title} className={s.link}>
               <div className={s.title}>{link.title}</div>
               <div className={s.description}>{link.description}</div>
             </div>
@@ -57,14 +57,14 @@ export const Footer = ({}: Props) => {
           <div className={s.row}></div>
           <div className={s.row}>
             {bottomLinks.map(link => (
-              <Link href={link.path}>
+              <Link key={link.path} href={link.path}>
                 <a className={s.link}>{link.title}</a>
               </Link>
             ))}
           </div>
           <div className={s.row}>
             {bottomLinks.map(link => (
-              <Link href={link.path}>
+              <Link key={link.path} href={link.path}>
                 <a className={s.link}>{link.title}</a>
               </Link>
             ))}

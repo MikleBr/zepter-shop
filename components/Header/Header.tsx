@@ -41,7 +41,7 @@ export const Header = ({ links }: Props) => {
     >
       <div className={s.links}>
         {links.map(link => (
-          <Link href={link.path}>
+          <Link key={link.path} href={link.path}>
             <a className={s.link}>{link.title}</a>
           </Link>
         ))}
