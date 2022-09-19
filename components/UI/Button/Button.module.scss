@@ -1,0 +1,28 @@
+.button {
+  padding: 14px 30px;
+  width: 188px;
+  height: 43px;
+
+  background: #292527;
+
+  font-weight: 300;
+  font-size: 19px;
+  line-height: 18px;
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  text-transform: uppercase;
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #292527;
+    background-color: #fff;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
