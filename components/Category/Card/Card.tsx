@@ -17,7 +17,7 @@ export const CategoryCard = ({ title, path, description, image }: Props) => {
         <div className={s.bgFilter}></div>
         <div className={s.info}>
           <p className={s.title}>{title}</p>
-          {description && <p className={s.description}>{description}</p>}
+          {/* {description && <p className={s.description}>{description}</p>} */}
         </div>
       </div>
     </Link>
