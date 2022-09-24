@@ -1,6 +1,11 @@
-.image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
+.grid {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+
+    .element {
+        width: calc((100% - 30px) / 3);
+    }
 }
