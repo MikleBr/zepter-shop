@@ -24,7 +24,7 @@ const Home: NextPage = () => {
         description="ПЕРЕДОВЫЕ ТЕХНОЛОГИИ И ВЕЛИКОЛЕПНЫЙ ДИЗАЙН"
         button={{ title: 'Перейти', onClick: () => console.log('test') }}
       />
-      <ShopLayout>
+      <ShopLayout scrollAnimation={true}>
         <CategoryList
           title="Коллекции на каждую неделю"
           categories={categories}
