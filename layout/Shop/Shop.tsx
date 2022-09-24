@@ -8,6 +8,7 @@ import s from './Shop.module.scss';
 
 type Props = {
   children: ReactNode;
+  scrollAnimation?: boolean;
   breadcrumbs?: Breadcrumb[];
 };
 
@@ -26,10 +27,14 @@ const links = [
   },
 ];
 
-export const ShopLayout = ({ children, breadcrumbs }: Props) => {
+export const ShopLayout = ({
+  children,
+  scrollAnimation,
+  breadcrumbs,
+}: Props) => {
   return (
-    <div className={s.page}>
-      {/* <Header links={links} /> */}
+    <div className={`${s.page} ${scrollAnimation ? s.scrollHeader : ''}`}>
+      <Header scrollAnimation={scrollAnimation} links={links} />
       {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
       <div className={s.container}>{children}</div>
       <Footer />
