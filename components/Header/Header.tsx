@@ -13,26 +13,26 @@ type Props = {
 };
 
 export const Header = ({ links }: Props) => {
-  const [isTransparent, setIsTransparent] = useState(true);
+  const [isTransparent, setIsTransparent] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!headerRef || !headerRef.current) return;
-    const handleScroll = () => {
-      const scrollTop = document.documentElement.scrollTop;
-      if (scrollTop < 100) {
-        setIsTransparent(true);
-      } else {
-        setIsTransparent(false);
-      }
-    };
+  // useEffect(() => {
+  //   if (!headerRef || !headerRef.current) return;
+  //   const handleScroll = () => {
+  //     const scrollTop = document.documentElement.scrollTop;
+  //     if (scrollTop < 100) {
+  //       setIsTransparent(true);
+  //     } else {
+  //       setIsTransparent(false);
+  //     }
+  //   };
 
-    window.addEventListener('scroll', handleScroll);
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [headerRef]);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [headerRef]);
 
   return (
     <div

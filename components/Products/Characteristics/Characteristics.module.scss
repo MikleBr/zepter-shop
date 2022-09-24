@@ -1,0 +1,45 @@
+.characteristics {
+    max-width: 810px;
+
+    font-size: 19px;
+    line-height: 28px;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    @media (max-width: 320px) {
+        font-size: 12px;
+        line-height: 23px;
+    }
+
+    .characteristic {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .field {
+        font-family: "Roboto", sans-serif;
+
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 28px;
+
+        color: #000000;
+    }
+    .divider {
+        margin: 0 30px 5px 15px;
+        width: 490px;
+        border-bottom: 1.5px dotted #000000;
+        position: relative;
+        top: -3px;
+        padding: 0;
+    }
+    .value {
+        font-family: "Roboto", sans-serif;
+
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 28px;
+
+        color: #000000;
+    }
+}

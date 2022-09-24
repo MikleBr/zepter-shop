@@ -1,0 +1,67 @@
+.breadcrumbs {
+    padding: 20px 0;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-top: 1px solid #c4c4c4;
+    border-bottom: 1px solid #c4c4c4;
+
+    .container {
+        max-width: 1320px;
+        width: calc(100% - 20px);
+
+        display: flex;
+        align-items: center;
+    }
+
+    .divider {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 14px;
+
+        margin: 0 12px;
+    }
+
+    .breadcrumb {
+        display: flex;
+    }
+
+    .link {
+        position: relative;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 14px;
+
+        cursor: pointer;
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background-color: #000;
+
+            transition: all 0.2s ease;
+        }
+
+        &.inactive {
+            cursor: default;
+
+            &::after {
+                display: none;
+            }
+        }
+
+        &:hover {
+            &:after {
+                width: 100%;
+            }
+        }
+    }
+}

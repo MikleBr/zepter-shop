@@ -7,4 +7,11 @@ export type Product = BaseEntity & {
   description: string;
   images?: string[];
   categoryId: number;
+  price: number;
+  variant?: ProductVariant;
+};
+
+export type ProductVariant = {
+  title: string;
+  list: { title: string; price: number }[];
 };
