@@ -12,6 +12,7 @@ export const products: Product[] = [
       'https://static.tildacdn.com/tild6636-3530-4264-b339-363536626635/a1e8868ed21086f3b4a3.jpg',
     ],
     categoryId: 1,
+    recommendedProductIds: [2],
     price: 12000,
   },
   {
@@ -25,6 +26,21 @@ export const products: Product[] = [
       'https://static.tildacdn.com/tild6161-3036-4433-b062-646135316633/ImageHandler.jpg',
     ],
     price: 125000,
+    characteristics: [
+      {
+        title: 'Артикул',
+        value: 'WT-3WF1',
+      },
+      {
+        title: 'Вес брутто (кг)',
+        value: '2.46',
+      },
+      {
+        title: 'Вес нетто (кг)',
+        value: '1.94',
+      },
+    ],
+    recommendedProductIds: [1],
   },
   {
     id: 3,

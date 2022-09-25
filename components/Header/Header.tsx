@@ -27,6 +27,10 @@ export const Header = ({ scrollAnimation, links, onClickBasket }: Props) => {
     return (acc += product.count * product.product.price);
   }, 0);
 
+  const productsCount = basketProducts.reduce<number>((acc, product) => {
+    return (acc += product.count);
+  }, 0);
+
   useEffect(() => {
     if (!scrollAnimation) return;
     if (!headerRef || !headerRef.current) return;
@@ -53,7 +57,9 @@ export const Header = ({ scrollAnimation, links, onClickBasket }: Props) => {
     >
       <div className={s.container}>
         <div className={s.right}>
-          <div className={s.logo}>Zepter</div>
+          <Link href="/">
+            <div className={s.logo}>Zepter</div>
+          </Link>
         </div>
         <div className={s.links}>
           {links.map(link => (
@@ -64,7 +70,10 @@ export const Header = ({ scrollAnimation, links, onClickBasket }: Props) => {
         </div>
         <div className={s.left}>
           <div className={s.cart} onClick={onClickBasket}>
-            <CartButton color={isTransparent ? '#fff' : '#292527'} />
+            <CartButton
+              type={isTransparent ? 'light' : 'dark'}
+              count={productsCount}
+            />
             <span className={s.summary}>
               {formatNumber(summaryPrice)} &#8381;
             </span>

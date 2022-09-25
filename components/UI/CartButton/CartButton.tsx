@@ -3,16 +3,18 @@ import React from 'react';
 import s from './CartButton.module.scss';
 
 type Props = {
-  color?: string;
+  count?: number;
+  type?: 'light' | 'dark';
   onClick?: () => void;
 };
 
-export const CartButton = ({ color = '#fff', onClick }: Props) => {
+export const CartButton = ({ count, type = 'light', onClick }: Props) => {
+  const color = type === 'light' ? '#ffffff' : '#292527';
   return (
     <div className={s.cartButton} onClick={onClick}>
       <svg
-        width="22"
-        height="22"
+        width="24"
+        height="24"
         viewBox="0 0 22 22"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -45,6 +47,7 @@ export const CartButton = ({ color = '#fff', onClick }: Props) => {
           </clipPath>
         </defs>
       </svg>
+      {!!count && <div className={`${s.count} ${s[type]}`}>{count}</div>}
     </div>
   );
 };

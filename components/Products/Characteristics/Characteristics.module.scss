@@ -12,11 +12,15 @@
     }
 
     .characteristic {
+        position: relative;
+        width: 100%;
         display: flex;
-        align-items: flex-end;
+        justify-content: space-between;
+        align-content: stretch;
     }
 
     .field {
+        padding: 0 15px 0 0;
         font-family: "Roboto", sans-serif;
 
         font-weight: 300;
@@ -24,16 +28,20 @@
         line-height: 28px;
 
         color: #000000;
+
+        background-color: #fff;
     }
     .divider {
-        margin: 0 30px 5px 15px;
-        width: 490px;
+        z-index: -1;
+        position: absolute;
+        bottom: 9px;
+        left: 0;
+        width: 100%;
         border-bottom: 1.5px dotted #000000;
-        position: relative;
-        top: -3px;
-        padding: 0;
     }
     .value {
+        padding: 0 0 0 30px;
+
         font-family: "Roboto", sans-serif;
 
         font-weight: 300;
@@ -41,5 +49,6 @@
         line-height: 28px;
 
         color: #000000;
+        background-color: #fff;
     }
 }

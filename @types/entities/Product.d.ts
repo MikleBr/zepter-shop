@@ -9,9 +9,16 @@ export type Product = BaseEntity & {
   categoryId: number;
   price: number;
   variant?: ProductVariant;
+  recommendedProductIds?: number[];
+  characteristics?: ProductCharacteristics[];
 };
 
 export type ProductVariant = {
   title: string;
   list: { title: string; price: number }[];
+};
+
+export type ProductCharacteristics = {
+  title: string;
+  value: string;
 };

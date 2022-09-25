@@ -11,6 +11,9 @@ import { SelectOption } from '../../components/UI/Select/Select';
 import { Information } from '../../components/Products/Information/Information';
 import s from './products.module.scss';
 import { BasketContext } from '../../context/BasketContext';
+import { BlockWrapper } from '../../components/BlockWrapper/BlockWrapper';
+import { getRecommendedProducts } from '../../helpers/getRecommendedProducts';
+import { ProductCard } from '../../components/Products/Card/Card';
 
 function ProductPage() {
   const router = useRouter();
@@ -26,6 +29,10 @@ function ProductPage() {
   const productId = id ? +id : 0;
 
   const product = products.find(product => product.id === productId);
+
+  const handleMoveToProduct = (productId: number) => {
+    router.replace(`/products/${productId}`);
+  };
 
   useEffect(() => {
     if (!product) return;
@@ -52,6 +59,8 @@ function ProductPage() {
 
   const categoryId = product.categoryId;
   const category = getCategoryById(categoryId);
+
+  const recommendedProducts = getRecommendedProducts(product);
 
   const breadcrumbs = [
     {
@@ -99,12 +108,32 @@ function ProductPage() {
           механическим повреждениям и истиранию.
         </p>
 
-        <p className={s.subtitle}>Характеристики</p>
-
-        <div className={s.characteristics}>
-          <ProductCharacteristics />
-        </div>
+        {product.characteristics && (
+          <>
+            <p className={s.subtitle}>Характеристики</p>
+            <div className={s.characteristics}>
+              <ProductCharacteristics
+                characteristics={product.characteristics}
+              />
+            </div>
+          </>
+        )}
       </div>
+      {!!product.recommendedProductIds?.length && (
+        <BlockWrapper title="Рекомендуемые товары">
+          {recommendedProducts.map(recommendedProduct => (
+            <ProductCard
+              key={recommendedProduct.id}
+              img={recommendedProduct.images?.[0] || ''}
+              title={recommendedProduct.title}
+              price={recommendedProduct.price}
+              onMoveToProduct={() => handleMoveToProduct(recommendedProduct.id)}
+              onAddToBasket={() => addProduct(recommendedProduct)}
+              onRemoveFromBasket={() => removeProduct(recommendedProduct)}
+            />
+          ))}
+        </BlockWrapper>
+      )}
     </ShopLayout>
   );
 }

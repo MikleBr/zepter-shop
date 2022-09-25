@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import s from './ImagesSlider.module.scss';
 
@@ -8,6 +8,11 @@ type Props = {
 
 export const ImagesSlider = ({ images }: Props) => {
   const [openedImage, setOpenedImage] = useState(images[0]);
+
+  useEffect(() => {
+    setOpenedImage(images[0]);
+  }, [images]);
+
   return (
     <div className={s.slider}>
       <div className={s.openedImage}>

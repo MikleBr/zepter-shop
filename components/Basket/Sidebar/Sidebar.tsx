@@ -40,6 +40,7 @@ export const BasketSidebar = ({ isOpen, onClose }: Props) => {
           {isBasketEmpty && <p className={s.empty}>Ваша корзина пуста</p>}
           {basketProducts.map(basketField => (
             <BasketProduct
+              key={basketField.product.id}
               product={basketField.product}
               count={basketField.count}
               onAdd={() => addProduct(basketField.product)}
