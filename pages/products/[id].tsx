@@ -9,11 +9,12 @@ import { SingleValue } from 'react-select';
 
 import { SelectOption } from '../../components/UI/Select/Select';
 import { Information } from '../../components/Products/Information/Information';
-import s from './products.module.scss';
 import { BasketContext } from '../../context/BasketContext';
 import { BlockWrapper } from '../../components/BlockWrapper/BlockWrapper';
 import { getRecommendedProducts } from '../../helpers/getRecommendedProducts';
 import { ProductCard } from '../../components/Products/Card/Card';
+import { Product } from '../../@types/entities/Product';
+import s from './products.module.scss';
 
 function ProductPage() {
   const router = useRouter();
@@ -51,6 +52,17 @@ function ProductPage() {
   };
 
   if (!product) return;
+
+  const getProductCount = (product: Product) => {
+    const foundedProduct = basketProducts.find(
+      basketProduct => basketProduct.product.id === product.id
+    );
+
+    if (!foundedProduct) return 0;
+    console.log(foundedProduct.count);
+
+    return foundedProduct.count;
+  };
 
   const productCartCount =
     basketProducts.find(
@@ -98,15 +110,7 @@ function ProductPage() {
         <div className={s.divider}></div>
         <p className={s.subtitle}>Описание</p>
 
-        <p className={s.description}>
-          Кухонный гарнитур «Сити» — прекрасный выбор для малогабаритной
-          квартиры. Два ряда напольных и навесных шкафов займут минимум
-          пространства, вместив, при этом, всю необходимую кухонную утварь.
-          Защитная пленка на фасадах уберегает модули от воздействия влаги и
-          жира, легко очищается от загрязнений неабразивными моющими средствами.
-          Обладает прочной цельной столешницей, поверхность которой устойчива к
-          механическим повреждениям и истиранию.
-        </p>
+        <p className={s.description}>{product.description}</p>
 
         {product.characteristics && (
           <>
@@ -127,6 +131,7 @@ function ProductPage() {
               img={recommendedProduct.images?.[0] || ''}
               title={recommendedProduct.title}
               price={recommendedProduct.price}
+              countInBasket={getProductCount(recommendedProduct)}
               onMoveToProduct={() => handleMoveToProduct(recommendedProduct.id)}
               onAddToBasket={() => addProduct(recommendedProduct)}
               onRemoveFromBasket={() => removeProduct(recommendedProduct)}

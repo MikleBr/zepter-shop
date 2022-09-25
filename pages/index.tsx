@@ -40,7 +40,6 @@ const Home: NextPage = () => {
         title="Zepter"
         image="/images/background.png"
         description="ПЕРЕДОВЫЕ ТЕХНОЛОГИИ И ВЕЛИКОЛЕПНЫЙ ДИЗАЙН"
-        button={{ title: 'Перейти', onClick: () => console.log('test') }}
       />
       <ShopLayout scrollAnimation={true}>
         <CategoryList

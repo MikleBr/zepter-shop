@@ -58,7 +58,7 @@ export const Information = ({
           countInBasket={countInBasket || 0}
           onAddToBasket={onAddToBasket}
           onRemoveFromBasket={onRemoveFromBasket}
-          secondAction={{ title: 'Подробнее', onClick: onAddToFavorite }}
+          secondAction={{ title: 'В избранное', onClick: onAddToFavorite }}
         />
       </div>
       {category && (
