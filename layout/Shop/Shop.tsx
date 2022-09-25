@@ -19,12 +19,8 @@ const links = [
     path: '/',
   },
   {
-    title: 'Дом',
-    path: '/groups/home',
-  },
-  {
-    title: 'Кухня',
-    path: '/groups/kitchen',
+    title: 'Категории',
+    path: '/categories',
   },
 ];
 
