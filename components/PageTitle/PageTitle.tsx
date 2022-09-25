@@ -10,10 +10,9 @@ type Props = {
     onClick: () => void;
   };
 };
-
 export const PageTitle = ({ title, description, image, button }: Props) => {
   return (
-    <div className={s.pageTitle} style={{ backgroundImage: `url(${image});` }}>
+    <div className={s.pageTitle} style={{ backgroundImage: `url("${image}")` }}>
       <div className={s.container}>
         <h1 className={s.title}>{title}</h1>
         {description && <p className={s.description}>{description}</p>}

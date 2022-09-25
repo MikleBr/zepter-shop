@@ -81,10 +81,6 @@ export const BasketProvider = ({ children }: Props) => {
     );
   };
 
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
-
   return (
     <BasketContext.Provider
       value={{

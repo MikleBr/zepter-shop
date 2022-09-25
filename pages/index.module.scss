@@ -1,11 +1,14 @@
-.grid {
+.catalog {
+    padding: 0 0 20px 0;
+
     width: 100%;
 
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    align-items: stretch;
+    column-gap: 20px;
 
-    .element {
-        width: calc((100% - 30px) / 3);
+    .cardWrapper {
+        width: calc((100% - 40px) / 3);
     }
 }

@@ -48,9 +48,9 @@ const Home: NextPage = () => {
           categories={categories}
         />
         <BlockWrapper title="Рекомендуемые товары">
-          <div className={s.grid}>
+          <div className={s.catalog}>
             {products.map(product => (
-              <div className={s.element}>
+              <div key={product.id} className={s.cardWrapper}>
                 <ProductCard
                   img={product.images?.[0] || ''}
                   countInBasket={getProductCount(product)}
