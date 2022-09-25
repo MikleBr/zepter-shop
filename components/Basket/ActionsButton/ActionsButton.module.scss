@@ -1,0 +1,38 @@
+.actionsButtons {
+    display: flex;
+    align-items: center;
+
+    .counter {
+        margin: 0 10px;
+
+        width: 18px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .button {
+        width: 42px;
+        height: 42px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #ff2c02;
+        border-radius: 5px;
+
+        color: #fff;
+
+        transition: all 0.2s ease;
+
+        &:hover {
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}

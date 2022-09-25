@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ProductCharacteristics } from '../../components/Products/Characteristics/Characteristics';
 import { ImagesSlider } from '../../components/Products/ImagesSlider/ImagesSlider';
 import { getCategoryById } from '../../helpers/getCategoryById';
@@ -10,14 +10,20 @@ import { SingleValue } from 'react-select';
 import { SelectOption } from '../../components/UI/Select/Select';
 import { Information } from '../../components/Products/Information/Information';
 import s from './products.module.scss';
+import { BasketContext } from '../../context/BasketContext';
 
 function ProductPage() {
   const router = useRouter();
 
+  const {
+    products: basketProducts,
+    addProduct,
+    removeProduct,
+  } = useContext(BasketContext);
+  const [selectValue, setSelectValue] = useState<SelectOption | null>(null);
+
   const { id } = router.query;
   const productId = id ? +id : 0;
-
-  const [selectValue, setSelectValue] = useState<SelectOption | null>(null);
 
   const product = products.find(product => product.id === productId);
 
@@ -38,6 +44,11 @@ function ProductPage() {
   };
 
   if (!product) return;
+
+  const productCartCount =
+    basketProducts.find(
+      basketProduct => basketProduct.product.id === product.id
+    )?.count || 0;
 
   const categoryId = product.categoryId;
   const category = getCategoryById(categoryId);
@@ -66,9 +77,12 @@ function ProductPage() {
           <div className={s.information}>
             <Information
               product={product}
+              countInBasket={productCartCount}
               price={Number(selectValue?.value) || product.price}
               selectValue={selectValue}
               onChangeSelect={handleChangeSelect}
+              onAddToBasket={() => addProduct(product)}
+              onRemoveFromBasket={() => removeProduct(product)}
             />
           </div>
         </div>

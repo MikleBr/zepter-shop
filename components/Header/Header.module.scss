@@ -61,6 +61,13 @@
         justify-content: flex-end;
     }
 
+    .cart {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        color: #292527;
+    }
+
     &.transparent {
         height: 160px;
 
@@ -73,6 +80,13 @@
 
         .link {
             color: #fff;
+        }
+
+        .cart {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+            color: #ffffff;
         }
     }
 }

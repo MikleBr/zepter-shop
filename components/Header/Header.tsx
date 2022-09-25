@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
-import { Button } from '../UI/Button/Button';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { BasketContext } from '../../context/BasketContext';
+import { formatNumber } from '../../helpers/formatNumber';
 import { CartButton } from '../UI/CartButton/CartButton';
-
-import CartIcon from './../../assets/icons/cart.svg';
 
 import s from './Header.module.scss';
 
@@ -15,11 +14,18 @@ type Link = {
 type Props = {
   scrollAnimation?: boolean;
   links: Link[];
+  onClickBasket?: () => void;
 };
 
-export const Header = ({ scrollAnimation, links }: Props) => {
+export const Header = ({ scrollAnimation, links, onClickBasket }: Props) => {
   const [isTransparent, setIsTransparent] = useState(scrollAnimation);
   const headerRef = useRef<HTMLDivElement>(null);
+
+  const { products: basketProducts } = useContext(BasketContext);
+
+  const summaryPrice = basketProducts.reduce<number>((acc, product) => {
+    return (acc += product.count * product.product.price);
+  }, 0);
 
   useEffect(() => {
     if (!scrollAnimation) return;
@@ -57,7 +63,12 @@ export const Header = ({ scrollAnimation, links }: Props) => {
           ))}
         </div>
         <div className={s.left}>
-          <CartButton color={isTransparent ? '#fff' : '#292527'} />
+          <div className={s.cart} onClick={onClickBasket}>
+            <CartButton color={isTransparent ? '#fff' : '#292527'} />
+            <span className={s.summary}>
+              {formatNumber(summaryPrice)} &#8381;
+            </span>
+          </div>
         </div>
       </div>
     </div>

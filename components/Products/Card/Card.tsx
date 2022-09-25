@@ -1,5 +1,6 @@
 import React from 'react';
 import { Category } from '../../../@types/entities/Category';
+import { ProductButtons } from '../../UI/ProductButtons/ProductButtons';
 
 import s from './Card.module.scss';
 
@@ -8,8 +9,10 @@ type Props = {
   category?: Category;
   title: string;
   price: number;
+  countInBasket?: number;
   onMoveToProduct: () => void;
   onAddToBasket: () => void;
+  onRemoveFromBasket: () => void;
 };
 
 export const ProductCard = ({
@@ -17,8 +20,10 @@ export const ProductCard = ({
   category,
   title,
   price,
+  countInBasket,
   onAddToBasket,
   onMoveToProduct,
+  onRemoveFromBasket,
 }: Props) => {
   return (
     <div className={s.card}>
@@ -28,17 +33,12 @@ export const ProductCard = ({
       <p className={s.subtitle}>{category && category.title}</p>
       <p className={s.title}>{title}</p>
       <p className={s.price}>{price} &#8381;</p>
-      <div className={s.buttons}>
-        <button className={`${s.button}`} onClick={onMoveToProduct}>
-          Подробнее
-        </button>
-        <button
-          className={`${s.button} ${s.addToBasket}`}
-          onClick={onAddToBasket}
-        >
-          Добавить в корзину
-        </button>
-      </div>
+      <ProductButtons
+        countInBasket={countInBasket || 0}
+        onAddToBasket={onAddToBasket}
+        onRemoveFromBasket={onRemoveFromBasket}
+        secondAction={{ title: 'Подробнее', onClick: onMoveToProduct }}
+      />
     </div>
   );
 };

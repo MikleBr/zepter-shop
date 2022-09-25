@@ -2,12 +2,13 @@ import type { AppProps } from 'next/app';
 
 import './../styles/global.scss';
 import Head from 'next/head';
+import { BasketProvider } from '../context/BasketContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Zepter test app</title>
+        <title>Zepter</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
@@ -18,7 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      <BasketProvider>
+        <Component {...pageProps} />
+      </BasketProvider>
     </>
   );
 }

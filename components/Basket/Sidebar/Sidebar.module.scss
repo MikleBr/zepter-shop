@@ -1,0 +1,70 @@
+.background {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #00000044;
+
+    transition: all 0.2s ease;
+
+    &.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.basketModal {
+    z-index: 11;
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    width: 400px;
+    height: 100vh;
+
+    background-color: #fff;
+
+    transition: all 0.2s ease;
+
+    &.hidden {
+        transform: translateX(100%);
+        visibility: hidden;
+    }
+
+    .content {
+        padding: 20px 10px;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title {
+        padding: 0 0 15px 0;
+        width: 100%;
+        font-size: 30px;
+        font-weight: 500;
+
+        border-bottom: 1px solid #c4c4c4;
+    }
+
+    .empty {
+        margin: 50px 0 0 0;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .button {
+        margin: 10px 0 0 0;
+        width: 100%;
+
+        &:hover {
+            background-color: #ff2c02;
+        }
+    }
+}

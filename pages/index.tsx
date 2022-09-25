@@ -9,12 +9,30 @@ import { categories } from '../constants/categories';
 import { products } from '../constants/products';
 import { getCategoryById } from '../helpers/getCategoryById';
 import { ShopLayout } from '../layout/Shop/Shop';
+import { useRouter } from 'next/router';
+import { useContext } from 'react';
+import { BasketContext } from '../context/BasketContext';
+import { Product } from '../@types/entities/Product';
 
 import s from './index.module.scss';
-import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
   const router = useRouter();
+
+  const {
+    products: basketProducts,
+    addProduct,
+    removeProduct,
+  } = useContext(BasketContext);
+
+  const getProductCount = (product: Product) => {
+    const foundedProduct = basketProducts.find(
+      basketProduct => basketProduct.product.id === product.id
+    );
+
+    if (!foundedProduct) return 0;
+    return foundedProduct.count;
+  };
 
   return (
     <>
@@ -35,6 +53,7 @@ const Home: NextPage = () => {
               <div className={s.element}>
                 <ProductCard
                   img={product.images?.[0] || ''}
+                  countInBasket={getProductCount(product)}
                   category={getCategoryById(product.categoryId)}
                   title={product.title}
                   price={product.price}
@@ -42,7 +61,10 @@ const Home: NextPage = () => {
                     router.push(`/products/${product.id}`);
                   }}
                   onAddToBasket={() => {
-                    console.log('add to basket');
+                    addProduct(product);
+                  }}
+                  onRemoveFromBasket={() => {
+                    removeProduct(product);
                   }}
                 />
               </div>

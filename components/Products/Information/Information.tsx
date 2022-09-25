@@ -4,26 +4,33 @@ import { SingleValue } from 'react-select';
 import { Product } from '../../../@types/entities/Product';
 import { formatNumber } from '../../../helpers/formatNumber';
 import { getCategoryById } from '../../../helpers/getCategoryById';
+import { ProductButtons } from '../../UI/ProductButtons/ProductButtons';
 import { SelectCustom, SelectOption } from '../../UI/Select/Select';
 
 import s from './Information.module.scss';
 
 type Props = {
   product: Product;
+  isFavorite?: boolean;
+  countInBasket: number;
   price: number;
   selectValue?: SelectOption | null;
   onChangeSelect?: (value: SingleValue<SelectOption>) => void;
   onAddToFavorite?: () => void;
   onAddToBasket?: () => void;
+  onRemoveFromBasket?: () => void;
   onMoveToCategory?: () => void;
 };
 
 export const Information = ({
   product,
   price,
+  isFavorite,
+  countInBasket,
   selectValue,
   onAddToFavorite,
   onAddToBasket,
+  onRemoveFromBasket,
   onMoveToCategory,
   onChangeSelect,
 }: Props) => {
@@ -47,16 +54,12 @@ export const Information = ({
         />
       )}
       <div className={s.buttons}>
-        <button className={s.button} onClick={onAddToFavorite}>
-          Добавить в избранное
-        </button>
-
-        <button
-          className={`${s.button} ${s.addToBasket}`}
-          onClick={onAddToBasket}
-        >
-          Добавить в корзину
-        </button>
+        <ProductButtons
+          countInBasket={countInBasket || 0}
+          onAddToBasket={onAddToBasket}
+          onRemoveFromBasket={onRemoveFromBasket}
+          secondAction={{ title: 'Подробнее', onClick: onAddToFavorite }}
+        />
       </div>
       {category && (
         <div className={s.categoryBlock}>
