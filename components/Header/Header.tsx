@@ -69,6 +69,9 @@ export const Header = ({ scrollAnimation, links, onClickBasket }: Props) => {
           ))}
         </div>
         <div className={s.left}>
+          <div className={`${s.phoneLink} ${!isTransparent && s.dark}`}>
+            <a href="tel:89999999999">8 (999) 999-99-99</a>
+          </div>
           <div className={s.cart} onClick={onClickBasket}>
             <CartButton
               type={isTransparent ? 'light' : 'dark'}

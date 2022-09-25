@@ -70,6 +70,22 @@
         cursor: pointer;
     }
 
+    .phoneLink {
+        margin: 0 10px 0 0;
+
+        transition: all 0.2s ease;
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        &.dark {
+            a {
+                color: #292527;
+            }
+        }
+    }
+
     &.transparent {
         height: 160px;
 
